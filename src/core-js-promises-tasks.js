@@ -129,11 +129,11 @@ function getAllResult(promises) {
  * [promise1, promise4, promise3, promise2] => Promise.resolved('10403020')
  */
 function queuPromises(promises) {
-  return promises.reverse().reduce(
+  return promises.reduceRight(
     (acc, promise) =>
-      acc.then((accResult) => {
-        return promise.then((promResult) => promResult + accResult);
-      }),
+      acc.then((accResult) =>
+        promise.then((promResult) => promResult + accResult)
+      ),
     Promise.resolve('')
   );
 }
